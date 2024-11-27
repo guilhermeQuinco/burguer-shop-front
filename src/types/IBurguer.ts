@@ -3,4 +3,5 @@ export interface IBurguers {
   name: string;
   price: number;
   imageUrl?: string;
+  description?: string;
 }

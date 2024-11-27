@@ -16,9 +16,12 @@ export function MainPage() {
   }, []);
 
   return (
-    <main className="w-full min-h-screen flex justify-center items-center ">
+    <main className="w-full  flex justify-center items-center ">
       <section className="w-full max-w-[1320px] mx-auto  ">
-        <Burguers burguers={burguers} />
+        <div className="flex flex-col gap-6">
+          <h1 className="font-semibold text-2xl">Burguers</h1>
+          <Burguers burguers={burguers} />
+        </div>
       </section>
     </main>
   );
