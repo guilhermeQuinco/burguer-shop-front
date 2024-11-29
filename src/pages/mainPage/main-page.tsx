@@ -1,26 +1,27 @@
-import { Burguers } from "@/components/burguers";
 import { useEffect, useState } from "react";
-import { IBurguers } from "@/types/IBurguer";
-import * as burguerService from "@/services/burguerService";
+import { IItem } from "@/types/IItem";
+import * as itemService from "@/services/itemService";
+
+import { Items } from "@/components/items";
 
 export function MainPage() {
-  const [burguers, setBurguers] = useState<IBurguers[]>([]);
+  const [items, setItems] = useState<IItem[]>([]);
 
   useEffect(() => {
-    const fetchBurguers = async () => {
-      const response = await burguerService.getBurguers();
-      setBurguers(response.burguers.data);
+    const fetchItems = async () => {
+      const response = await itemService.getItems();
+      setItems(response.burguers.data);
     };
 
-    fetchBurguers();
+    fetchItems();
   }, []);
 
   return (
-    <main className="w-full  flex justify-center items-center ">
+    <main className="w-full  flex justify-center items-center pb-20">
       <section className="w-full max-w-[1320px] mx-auto  ">
         <div className="flex flex-col gap-6">
-          <h1 className="font-semibold text-2xl">Burguers</h1>
-          <Burguers burguers={burguers} />
+          <h1 className="font-semibold text-2xl">Cardápio</h1>
+          <Items items={items} />
         </div>
       </section>
     </main>
