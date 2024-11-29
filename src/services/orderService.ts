@@ -9,3 +9,9 @@ export const listOrders = async () => {
 
   return orders.data;
 };
+
+export const cancelOrder = async (orderId: number) => {
+  await axios.delete("http://localhost:3333/order", {
+    data: { orderId },
+  });
+};

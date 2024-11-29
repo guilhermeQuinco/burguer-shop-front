@@ -1,4 +1,8 @@
+import { cancelOrder } from "@/services/orderService";
+import { Button } from "../ui/button";
+
 interface IItem {
+  quantity: number;
   item: {
     id: number;
     imageUrl: string;
@@ -10,6 +14,7 @@ interface IItem {
 export interface IOrder {
   id: number;
   createdAt: string;
+
   netAmount: string;
   items: IItem[];
 }
@@ -39,10 +44,21 @@ export function OrderItem({ order }: OrderItemProps) {
             </span>
           </div>
         </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row items-center ">
+            <span className="text-lg">Pedido Nº</span>
+            <span className="text-lg">{order.id}</span>
+          </div>
 
-        <div className="flex flex-row items-center">
-          <span className="text-lg">Pedido Nº</span>
-          <span className="text-lg">{order.id}</span>
+          <Button
+            className="bg-yellow-400 text-black hover:bg-yellow-300"
+            onClick={() => {
+              cancelOrder(order.id);
+              window.location.reload();
+            }}
+          >
+            Cancelar Pedido
+          </Button>
         </div>
       </div>
 
@@ -56,7 +72,9 @@ export function OrderItem({ order }: OrderItemProps) {
             />
 
             <div className="flex flex-col">
-              <span className="font-semibold text-lg">{item.item.name}</span>
+              <span className="font-semibold text-lg">
+                {item.quantity}x {item.item.name}
+              </span>
               <span className=" text-sm max-w-[500px] text-gray-500 line-clamp-2">
                 {item.item.description}
               </span>
