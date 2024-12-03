@@ -14,7 +14,6 @@ interface IItem {
 export interface IOrder {
   id: number;
   createdAt: string;
-
   netAmount: string;
   items: IItem[];
 }

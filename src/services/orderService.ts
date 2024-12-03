@@ -1,3 +1,4 @@
+import { IOrder } from "@/components/orders/order-item";
 import axios from "axios";
 
 export const createOrder = async () => {
@@ -5,7 +6,7 @@ export const createOrder = async () => {
 };
 
 export const listOrders = async () => {
-  const orders = await axios.get("http://localhost:3333/order");
+  const orders = await axios.get<IOrder[]>("http://localhost:3333/order");
 
   return orders.data;
 };

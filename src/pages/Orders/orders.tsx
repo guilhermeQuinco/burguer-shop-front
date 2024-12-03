@@ -1,25 +1,17 @@
-import { useEffect, useState } from "react";
 import * as orderService from "@/services/orderService";
 
-import { IOrder, OrderItem } from "@/components/orders/order-item";
+import { OrderItem } from "@/components/orders/order-item";
+import { useQuery } from "@tanstack/react-query";
 
 export function Orders() {
-  const [orders, setOrders] = useState<IOrder[]>([]);
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const orders = await orderService.listOrders();
-      setOrders(orders);
-    };
-
-    fetchOrders();
-  }, []);
-
-  console.log(orders);
+  const { data: orders } = useQuery({
+    queryKey: ["orders"],
+    queryFn: orderService.listOrders,
+  });
 
   return (
     <main className="w-full  flex justify-center items-center pb-20">
-      <section className="w-full max-w-[1320px] mx-auto  ">
+      <section className="w-full max-w-[1320px] mx-auto px-6  ">
         <div className="flex flex-col gap-10">
           <h1 className="font-semibold text-2xl">Seus Pedidos</h1>
 
